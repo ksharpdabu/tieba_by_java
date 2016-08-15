@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+
+    <session-factory>
+
+        <!--数据库连接配置-->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/tieba</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">root</property>
+
+
+        <!--方言-->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+
+        <!--打印生成的sql-->
+        <property name="show_sql">true</property>
+
+        <!--格式化sql-->
+        <!--<property name="format_sql">true</property>-->
+
+        <!--将session绑定到线程，这样才能用getCurrentSession()方法-->
+        <property name="current_session_context_class">thread</property>
+
+        <!--自动建表-->
+         <property name="hbm2ddl.auto">update</property>
+
+
+
+        <mapping class="info.dabu.domain.Topic" />
+        <mapping resource="Topic.hbm.xml" />
+
+        <mapping class="info.dabu.domain.Reply" />
+        <mapping resource="Replay.hbm.xml" />
+
+
+    </session-factory>
+
+
+</hibernate-configuration>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="info.dabu.domain" auto-import="true">
+
+    <class name="Reply"  table="t_replay" >
+
+        <id name="rid" column="rid"   >
+            <generator class="native" />
+
+        </id>
+
+
+        <property name="replyContent" type="string" />
+        <property name="ipAddr" type="string" />
+
+        <property name="createDate" type="java.util.Date" />
+
+        
+        <many-to-one name="topic" column="topic_id" class="Topic" ></many-to-one>
+
+    </class>
+
+
+
+</hibernate-mapping>

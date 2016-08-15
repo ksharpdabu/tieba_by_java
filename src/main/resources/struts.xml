@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true"></constant>
+    <package name="tieba" namespace="/" extends="struts-default">
+
+
+        <!--动态设置 action的method-->
+
+
+        <action name="TopicAction_*" method="{1}" class="info.dabu.web.action.TopicAction">
+            <result name="toList" type="redirectAction">
+
+                <param name="actionName">TopicAction_list</param>
+                <param name="namespace">/</param>
+
+            </result>
+
+            <result name="list">/index.jsp</result>
+
+
+            <result name="showTopic" >/showTopic.jsp</result>
+
+
+            <result name="reply"  type="redirectAction">
+                <param name="actionName">TopicAction_showTopic</param>
+                <param name="namespace">/</param>
+                <param name="topic.tid">${topic.tid}</param>
+
+
+            </result>
+
+
+
+
+        </action>
+
+
+    </package>
+
+
+</struts>

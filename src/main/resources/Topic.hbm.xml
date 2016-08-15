@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+
+<hibernate-mapping package="info.dabu.domain" auto-import="true">
+
+    <class name="Topic"  table="t_topic" >
+
+        <id name="tid" column="tid"  >
+            <generator class="native" />
+
+        </id>
+
+        <property name="title" type="string" />
+        <property name="topicContent" type="string" />
+        <property name="ipAddr" type="string" />
+        <!--calendar会导致报错-->
+        <!--<property name="lastReplyDate" type="calendar" />-->
+        <!--<property name="createDate" type="calendar" />-->
+
+        <!--指定Date类性对应mydql中的datatime类型-->
+        <!--方式一-->
+        <property name="lastReplyDate"  >
+            <column name="lastReplyDate" sql-type="datetime" ></column>
+        </property>
+
+
+
+        <property name="createDate"   >
+            <column name="createDate" sql-type="datetime" ></column>
+        </property>
+
+        <!--方式二-->
+        <!--<property name="lastReplyDate" type="java.util.Date"  />-->
+        <!---->
+        <!--<property name="createDate" type="java.util.Date" />-->
+
+
+
+
+        <list name="replyList" cascade="all">
+            <key column="topic_id"></key>
+            <index column="index_"  ></index>
+            <one-to-many class="Reply" ></one-to-many>
+        </list>
+
+    </class>
+
+
+
+</hibernate-mapping>
